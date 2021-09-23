@@ -28,17 +28,6 @@ export class Monitoring extends cdk.Construct {
       return metric;
     }
 
-    // Fill blanks areas in chart with lines
-    function fillMetrics(label: string, metrics: Record<string,cloudwatch.IMetric>) {
-      const mathMetric = new cloudwatch.MathExpression({
-        expression: "FILL(METRICS(), 0)",
-        usingMetrics: metrics,
-        label: label
-      });
-
-      return mathMetric;
-    }
-
     // Creates a generic time series widget
     function createWidget(label: string, metrics: cloudwatch.IMetric[]) {
       const widget = new cloudwatch.GraphWidget({
